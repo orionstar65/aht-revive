@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090f22">
+  <meta name="description" content="AHT Revive — practical Mac recovery guidance, verified device ownership support, and transparent technical assistance.">
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/site.css">
+  <title>{% block title %}AHT Revive — A clear path forward{% endblock %}</title>
+</head>
+<body>
+<div class="site-shell">
+<div class="ambient ambient-one" aria-hidden="true"></div>
+<div class="ambient ambient-two" aria-hidden="true"></div>
+  <header class="header">
+    <div class="container header-inner">
+      <a class="brand" href="/" aria-label="AHT Revive home">
+        <span class="brand-icon" aria-hidden="true"><svg width="25" height="25" viewBox="0 0 24 24" fill="none"><path d="M4 17.5 11.8 4l8.2 13.5h-4.3l-3.9-6.7-3.6 6.7H4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="18.8" cy="5.2" r="2" fill="#68E7CA"/></svg></span>
+        <span class="brand-text"><strong>AHT</strong><span>revive<span class="brand-dot">.</span></span></span>
+      </a>
+      <button class="menu-toggle" type="button" id="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      <nav class="nav" id="main-nav" aria-label="Main navigation">
+        <a href="/services" {% if active=='services' %}class="current"{% endif %}>Services</a>
+        <a href="/how-it-works" {% if active=='how' %}class="current"{% endif %}>How it works</a>
+        <a href="/faq" {% if active=='faq' %}class="current"{% endif %}>FAQ</a>
+      </nav>
+      <div class="nav-cta">
+        {% if user %}
+          {% if user.role=='ADMIN' %}<a class="nav-link" href="/admin">Admin</a>{% endif %}
+          <a class="button small outline" href="/dashboard">My workspace <span aria-hidden="true">↗</span></a>
+        {% else %}
+          <a class="nav-link" href="/login">Sign in</a>
+          <a class="button small primary" href="/register">Get started <span aria-hidden="true">↗</span></a>
+        {% endif %}
+      </div>
+    </div>
+  </header>
+  <main id="content">{% block content %}{% endblock %}</main>
+  <footer class="footer">
+    <div class="container footer-top">
+      <div class="footer-intro">
+        <a class="brand" href="/"><span class="brand-icon mini">✦</span><span class="brand-text"><strong>AHT</strong><span>revive<span class="brand-dot">.</span></span></span></a>
+        <p>Better answers for complicated Mac recovery situations. Built with clarity, care, and security in mind.</p>
+      </div>
+      <div class="footer-links"><h4>Explore</h4><a href="/services">Services</a><a href="/how-it-works">Our process</a><a href="/faq">FAQs</a></div>
+      <div class="footer-links"><h4>Account</h4><a href="/dashboard">Workspace</a><a href="/cases/new">Open a case</a><a href="/login">Sign in</a></div>
+      <div class="footer-links"><h4>Information</h4><a href="/privacy">Privacy</a><a href="/terms">Terms</a><span class="footer-location">Independent Mac support</span></div>
+    </div>
+    <div class="container footer-bottom"><span>© {{ year }} AHT Revive. All rights reserved.</span><span>Not affiliated with Apple Inc. · No guarantee of MDM removal.</span></div>
+  </footer>
+</div>
+<script src="/static/site.js" defer></script>
+</body>
+</html>

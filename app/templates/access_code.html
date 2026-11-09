@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}One-time access code — AHT Revive{% endblock %}
+{% block content %}
+<section class="container workspace narrow"><div class="back-row"><a href="/cases/{{ item.id }}">← Back to case</a></div>
+<div class="workspace-head"><div><span class="section-kicker">{{ 'FREE DEVICE CHECK' if stage=='CHECK' else 'PAID SUPPORT' }}</span><h1>Your one-time <em>access code.</em></h1><p>Use this code only on the Mac registered to case #{{ item.id[:8] }}.</p></div></div>
+<section class="workspace-panel code-card">
+  <div class="status-pill status-verified">Expires in 15 minutes · One use</div>
+  <p><strong>Case ID</strong></p><div class="copy-code">{{ item.id }}</div>
+  <p><strong>{{ 'CHECK' if stage=='CHECK' else 'SUPPORT' }} access code</strong></p><div class="copy-code">{{ code }}</div>
+  <p class="input-note">This is the only time this code is displayed. It is stored on the server as a hash. Do not share it with anyone.</p>
+  <h2>Use it on your Mac</h2>
+  <ol class="code-instructions">
+  <li>{{ 'Download the free Mac checker' if stage=='CHECK' else 'Download the protected diagnostic kit from your case page' }}.</li>
+  <li>Inspect the script before running it, then start it with <code>bash &lt;script-file&gt;</code>.</li>
+  <li>When prompted, enter your case ID and this one-time access code.</li>
+  <li>The checker contacts <code>{{ app_url }}</code> over HTTPS to confirm the device and case status. <strong>Set AHT_API_URL to this address if running locally.</strong></li>
+  </ol>
+  <div class="case-kit-actions"><a class="button primary" href="/cases/{{ item.id }}">Return to case ↗</a></div>
+</section></section>
+{% endblock %}
